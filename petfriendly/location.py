@@ -3,13 +3,13 @@ from os.path import getmtime, exists
 from datetime import datetime
 import csv
 from .models import HotelsLocation
-import urllib
+from urllib.parse import urlencode
+from time import sleep
 
 
 class Location:
     def __init__(self):
         self.hotels_location = {}
-        self.counter = 0
         self.response = []
 
     def get_hotels(self, key, page):
@@ -57,13 +57,98 @@ class Location:
                 counter += 1
         return(counter, len(results))
 
-    def items(self):
-        return self.hotels_location.items()
 
-    # def nearby(self):
-    #     end = {"location" : -33.8670522,151.1957362,"radius":1500,"type": "restaurant","key": YOUR_API_KEY}
-    #     url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" + end
-    #     payload = {}
-    #     headers = {}
-    #     response = requests.request("GET", url, headers=headers, data=payload)
-    #     print(response.text)
+class SearchNearby(Location):
+    def __init__(self):
+        self.response = []
+
+    def single_page(self, key, page_token=None, page=0):
+        latitude = "53.137450315270"
+        longitude = "23.148204088211"
+        data = {'location': latitude + ',' + longitude,
+                'radius': 3000,
+                'type': "park",
+                'key': key
+                }
+        if page_token:
+            data['pagetoken'] = 'PAGETOKEN'
+        url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" + urlencode(data)
+        if page_token:
+            url = url.replace('PAGETOKEN', page_token)
+        # print(url)
+        response = requests.get(url)
+        with open(f'out-{page}.txt', 'wb') as f:
+            f.write(response.text.encode("utf-8"))
+        self.response = response.json()
+        return self.response
+
+    def all_page(self, key):
+        last_response = self.single_page(key)
+        results = []
+        counter = 0
+        while True:
+            results += last_response['results']
+            if 'next_page_token' not in last_response:
+                # print(last_response['status'])
+                break
+            counter += 1
+            if counter > 5:
+                print('b')
+                break
+            sleep(2)
+            # print(last_response['next_page_token'])
+            last_response = self.single_page(key, last_response['next_page_token'], counter)
+        return results
+
+    def types_searching(self):
+        count_restaurants = 0
+        count_park = 0
+        count_pet_store = 0
+        count_veterinary_care = 0
+        results = self.response['results']
+        for i in results:
+            if 'restaurant' in i['types']:
+                print(i['place_id'])
+                print(i['types'])
+                count_restaurants += 1
+            if 'park' in i['types']:
+                print(i['place_id'])
+                print(i['types'])
+                count_park += 1
+            if 'pet_store' in i['types']:
+                print(i['place_id'])
+                print(i['types'])
+                count_pet_store += 1
+            if 'veterinary_care' in i['types']:
+                print(i['place_id'])
+                print(i['types'])
+                count_veterinary_care += 1
+        return "Restaurants: {} \n Park: {} \n Pet Store: {} \n Veterinary Care: {}"\
+            .format(count_restaurants, count_park, count_pet_store, count_veterinary_care)
+
+
+# count_restaurants = 0
+# count_park = 0
+# count_pet_store = 0
+# count_veterinary_care = 0
+# results = all_page(key)
+# print(len(results))
+# for i in results:
+#     if 'restaurant' in i['types']:
+#         print(i['place_id'])
+#         print(i['types'])
+#         count_restaurants += 1
+#     if 'park' in i['types']:
+#         print(i['place_id'])
+#         print(i['types'])
+#         count_park += 1
+#     if 'pet_store' in i['types']:
+#         print(i['place_id'])
+#         print(i['types'])
+#         count_pet_store += 1
+#     if 'veterinary_care' in i['types']:
+#         print(i['place_id'])
+#         print(i['types'])
+#         count_veterinary_care += 1
+# print("Restaurants: {} \n Park: {} \n Pet Store: {} \n Veterinary Care: {}"
+#       .format(count_restaurants, count_park, count_pet_store, count_veterinary_care))
