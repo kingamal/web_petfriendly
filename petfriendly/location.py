@@ -104,6 +104,10 @@ class SearchNearby(Location):
         count_park = 0
         count_pet_store = 0
         count_veterinary_care = 0
+        ranking_park = 0
+        ranking_restaurants = 0
+        ranking_pet_store = 0
+        ranking_veterinary_care = 0
         type = ['park', 'restaurant', 'pet_store', 'veterinary_care']
         results_park = self.all_page(key, type[0])
         results_restaurant = self.all_page(key, type[1])
@@ -112,50 +116,60 @@ class SearchNearby(Location):
         # print(len(results))
         for i in results_park:
             if 'park' in i['types']:
-                print(i['place_id'])
-                print(i['types'])
+                # print(results_park)
+                print(i['name'])
+                print(i['vicinity'])
+                # if not i['photos']:
+                #     continue
+                # print(i['photos'][0]["html_attributions"])
                 count_park += 1
+                if count_park <= 1:
+                    ranking_park += 1
+                if count_park > 2 and count_park < 10:
+                    ranking_park += 2
+                if count_park >= 10:
+                    ranking_park += 5
         for i in results_restaurant:
             if 'restaurant' in i['types']:
-                print(i['place_id'])
-                print(i['types'])
+                print(i['name'])
+                print(i['vicinity'])
+                # if i['photos'][0]["html_attributions"]:
+                #     print(i['photos'][0]["html_attributions"])
                 count_restaurants += 1
+                if count_restaurants <= 1:
+                    ranking_restaurants += 1
+                if count_restaurants > 2 and count_restaurants < 10:
+                    ranking_restaurants += 2
+                if count_restaurants >= 10:
+                    ranking_restaurants += 5
         for i in results_pet_store:
             if 'pet_store' in i['types']:
-                print(i['place_id'])
-                print(i['types'])
+                print(i['name'])
+                print(i['vicinity'])
+                # if i['photos'][0]["html_attributions"]:
+                #     print(i['photos'][0]["html_attributions"])
                 count_pet_store += 1
+                if count_pet_store <= 1:
+                    ranking_pet_store += 1
+                if count_pet_store > 2 and count_pet_store < 10:
+                    ranking_pet_store += 2
+                if count_pet_store >= 10:
+                    ranking_pet_store += 5
         for i in results_veterinary_care:
             if 'veterinary_care' in i['types']:
-                print(i['place_id'])
-                print(i['types'])
+                print(i['name'])
+                print(i['vicinity'])
+                # if i['photos'][0]["html_attributions"]:
+                #     print(i['photos'][0]["html_attributions"])
                 count_veterinary_care += 1
-        return "Restaurants: {} \n Park: {} \n Pet Store: {} \n Veterinary Care: {}"\
-            .format(count_restaurants, count_park, count_pet_store, count_veterinary_care)
-
-
-# count_restaurants = 0
-# count_park = 0
-# count_pet_store = 0
-# count_veterinary_care = 0
-# results = all_page(key)
-# print(len(results))
-# for i in results:
-#     if 'restaurant' in i['types']:
-#         print(i['place_id'])
-#         print(i['types'])
-#         count_restaurants += 1
-#     if 'park' in i['types']:
-#         print(i['place_id'])
-#         print(i['types'])
-#         count_park += 1
-#     if 'pet_store' in i['types']:
-#         print(i['place_id'])
-#         print(i['types'])
-#         count_pet_store += 1
-#     if 'veterinary_care' in i['types']:
-#         print(i['place_id'])
-#         print(i['types'])
-#         count_veterinary_care += 1
-# print("Restaurants: {} \n Park: {} \n Pet Store: {} \n Veterinary Care: {}"
-#       .format(count_restaurants, count_park, count_pet_store, count_veterinary_care))
+                if count_veterinary_care <= 1:
+                    ranking_veterinary_care += 1
+                if count_veterinary_care > 2 and count_veterinary_care < 10:
+                    ranking_veterinary_care += 2
+                if count_veterinary_care >= 10:
+                    ranking_veterinary_care += 5
+        all_ranking = ranking_restaurants + ranking_park + ranking_pet_store + ranking_veterinary_care
+        return "Restaurants: {} \n Park: {} \n Pet Store: {} \n Veterinary Care: {} \n " \
+               "All Ranking: {} \n Restaurants: {} \n Park: {} \n Pet Store: {} \n Veterinary Care: {}"\
+            .format(count_restaurants, count_park, count_pet_store, count_veterinary_care,
+            all_ranking, ranking_restaurants, ranking_park, ranking_pet_store, ranking_veterinary_care)
