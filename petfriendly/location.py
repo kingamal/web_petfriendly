@@ -62,12 +62,12 @@ class SearchNearby(Location):
     def __init__(self):
         self.response = []
 
-    def single_page(self, key, page_token=None, page=0):
+    def single_page(self, key, type, page_token=None, page=0):
         latitude = "53.137450315270"
         longitude = "23.148204088211"
         data = {'location': latitude + ',' + longitude,
-                'radius': 3000,
-                'type': "park",
+                'radius': 2000,
+                'type': type,
                 'key': key
                 }
         if page_token:
@@ -75,15 +75,15 @@ class SearchNearby(Location):
         url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" + urlencode(data)
         if page_token:
             url = url.replace('PAGETOKEN', page_token)
-        # print(url)
+        print(url)
         response = requests.get(url)
-        with open(f'out-{page}.txt', 'wb') as f:
-            f.write(response.text.encode("utf-8"))
+        # with open(f'out-{page}.txt', 'wb') as f:
+        #     f.write(response.text.encode("utf-8"))
         self.response = response.json()
         return self.response
 
-    def all_page(self, key):
-        last_response = self.single_page(key)
+    def all_page(self, key, type):
+        last_response = self.single_page(key, type)
         results = []
         counter = 0
         while True:
@@ -93,32 +93,39 @@ class SearchNearby(Location):
                 break
             counter += 1
             if counter > 5:
-                print('b')
                 break
             sleep(2)
             # print(last_response['next_page_token'])
-            last_response = self.single_page(key, last_response['next_page_token'], counter)
+            last_response = self.single_page(key, last_response['next_page_token'], type, counter)
         return results
 
-    def types_searching(self):
+    def types_searching(self, key):
         count_restaurants = 0
         count_park = 0
         count_pet_store = 0
         count_veterinary_care = 0
-        results = self.response['results']
-        for i in results:
-            if 'restaurant' in i['types']:
-                print(i['place_id'])
-                print(i['types'])
-                count_restaurants += 1
+        type = ['park', 'restaurant', 'pet_store', 'veterinary_care']
+        results_park = self.all_page(key, type[0])
+        results_restaurant = self.all_page(key, type[1])
+        results_pet_store = self.all_page(key, type[2])
+        results_veterinary_care = self.all_page(key, type[3])
+        # print(len(results))
+        for i in results_park:
             if 'park' in i['types']:
                 print(i['place_id'])
                 print(i['types'])
                 count_park += 1
+        for i in results_restaurant:
+            if 'restaurant' in i['types']:
+                print(i['place_id'])
+                print(i['types'])
+                count_restaurants += 1
+        for i in results_pet_store:
             if 'pet_store' in i['types']:
                 print(i['place_id'])
                 print(i['types'])
                 count_pet_store += 1
+        for i in results_veterinary_care:
             if 'veterinary_care' in i['types']:
                 print(i['place_id'])
                 print(i['types'])
