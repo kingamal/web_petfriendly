@@ -33,8 +33,8 @@ class HotelsLocation(models.Model):
     count_pet_store = models.IntegerField(default=0)
     count_veterinary_care = models.IntegerField(default=0)
 
-    def __str__(self):
-        return "Hotel: {}".format(self.hotel_name)
+    # def __str__(self):
+    #     return "Hotel: {}".format(self.hotel_name)
 
     def single_page(self, key, types, page_token=None, page=0):
         latitude = str(self.latitude)

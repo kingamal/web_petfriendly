@@ -21,7 +21,8 @@ def get_hotel_location(request, page):
     return HttpResponse("{}/{}".format(counter_new, counter_total))
 
 # def get_lat_long(request):
-#     rows = HotelsLocation.objects.filter(latitude__lte = 50).all() #lte/gte
+#     rows_lat = HotelsLocation.objects.filter(latitude__lte = 55).all() #lte/gte
+#     rows_long = HotelsLocation.objects.filter(longitude__lte = 24).all()
 
 def get_types(request):
     get_type = HotelsLocation()
@@ -31,5 +32,8 @@ def get_types(request):
     return 'ok'
 
 def home(request):
-    hotel = get_object_or_404(HotelsLocation, id=1)
-    return render(request, 'petfriendly/index.html', {'hotel_name': hotel.hotel_name})
+    hotel = HotelsLocation.objects.all()
+    hotels = []
+    for i in hotel:
+        hotels.append(i.hotel_name)
+    return render(request, 'petfriendly/index.html', {'hotels': hotels})
