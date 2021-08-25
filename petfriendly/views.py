@@ -31,8 +31,28 @@ def get_types(request):
     get_type.types_searching(key)
     return 'ok'
 
-def home(request):
+def ranking(request):
     hotel = HotelsLocation.objects.all()
+    counting = {}
+    for i in hotel:
+        counting['parks'] = i.count_park
+        counting['restaurants'] = i.count_restaurants
+        counting['pet_store'] = i.count_pet_store
+        counting['vet_care'] = i.count_veterinary_care
+        for value in counting.values():
+            if value <= 1:
+                i.ranking += 1
+            if value > 2 and value <= 10:
+                i.ranking += 2
+            if value > 10:
+                i.ranking += 5
+    return i.ranking
+
+
+
+
+def home(request):
+    hotel = HotelsLocation.objects.all() #[:10] order_by()
     hotels = []
     for i in hotel:
         hotels.append(i.hotel_name)

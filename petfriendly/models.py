@@ -32,6 +32,7 @@ class HotelsLocation(models.Model):
     count_park = models.IntegerField(default=0)
     count_pet_store = models.IntegerField(default=0)
     count_veterinary_care = models.IntegerField(default=0)
+    ranking = models.IntegerField(default=0)
 
     # def __str__(self):
     #     return "Hotel: {}".format(self.hotel_name)
