@@ -75,18 +75,16 @@ class HotelsLocation(models.Model):
         return results
 
     def types_searching(self, key):
-        with open(join(dirname(dirname(dirname(__file__))), 'key2.txt')) as f:
-            key = f.read().strip()
-        # ranking_park = 0
-        # ranking_restaurants = 0
-        # ranking_pet_store = 0
-        # ranking_veterinary_care = 0
         types = {
             'park': self.all_page(key, 'park'),
             'restaurant': self.all_page(key, 'restaurant'),
             'pet_store': self.all_page(key, 'pet_store'),
             'veterinary_care': self.all_page(key, 'veterinary_care')
             }
+        self.count_park = 0
+        self.count_restaurants = 0
+        self.count_pet_store = 0
+        self.count_veterinary_care = 0
         for results in types.values():
             for value in results:
                 if 'park' in value['types']:
@@ -97,6 +95,8 @@ class HotelsLocation(models.Model):
                     self.count_pet_store += 1
                 elif 'veterinary_care' in value['types']:
                     self.count_veterinary_care += 1
+        print(self.pk)
+        self.save()
         return "Restaurants: {} \n Park: {} \n Pet Store: {} \n Veterinary Care: {} \n " \
             .format(self.count_restaurants, self.count_park, self.count_pet_store,
                     self.count_veterinary_care)

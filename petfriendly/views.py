@@ -5,12 +5,15 @@ from .location import Location
 from os.path import join, dirname
 import json
 from .models import HotelsLocation
+from datetime import datetime
 
 # Create your views here.
+
 
 def hotellocation(request, hotel_name):
     hotellocation = get_object_or_404(HotelsLocation, hotel_name=hotel_name) #filter
     return HttpResponse(hotellocation.hotel_name)
+
 
 def get_hotel_location(request, page):
     location = Location()
@@ -24,31 +27,35 @@ def get_hotel_location(request, page):
 #     rows_lat = HotelsLocation.objects.filter(latitude__lte = 55).all() #lte/gte
 #     rows_long = HotelsLocation.objects.filter(longitude__lte = 24).all()
 
+
 def get_types(request):
-    get_type = HotelsLocation()
+    today = datetime.now().strftime('%Y-%m-%d')
+    get_types = HotelsLocation.objects.filter(updated_at__lte = today).all() #[:100]
     with open(join(dirname(dirname(dirname(__file__))), 'key2.txt')) as f:
         key = f.read().strip()
-    get_type.types_searching(key)
-    return 'ok'
+    for types in get_types:
+        retval = types.types_searching(key)
+    return HttpResponse('ok')
+
 
 def ranking(request):
     hotel = HotelsLocation.objects.all()
-    counting = {}
     for i in hotel:
+        counting = {}
         counting['parks'] = i.count_park
         counting['restaurants'] = i.count_restaurants
         counting['pet_store'] = i.count_pet_store
         counting['vet_care'] = i.count_veterinary_care
+        i.ranking = 0
         for value in counting.values():
-            if value <= 1:
+            if value == 1:
                 i.ranking += 1
-            if value > 2 and value <= 10:
+            elif value >= 2 and value <= 10:
                 i.ranking += 2
-            if value > 10:
+            elif value > 10:
                 i.ranking += 5
-    return i.ranking
-
-
+        i.save()
+    return HttpResponse()
 
 
 def home(request):
