@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Playfair+Display:400,700');
+html, body {
+	background-color: #fff;
+	color: #000;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    padding-top: 150px;
+    color: #333;
+}
+#top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+	text-align: left;
+	padding: 0;
+	background-color: white;
+	z-index: 2;
+}
+#top .inner {
+	width: 1000px;
+    margin: auto;
+}
+
+#MENU {
+	width: 600px;
+	height: 150px;
+	overflow: hidden;
+	background-color: white;
+	margin: 0;
+	padding: 0;
+
+}
+.main {
+    width: 1000px;
+    margin: 0 auto;
+}
+.container {
+    text-transform: uppercase;
+    text-decoration: none;
+	float: left;
+	width: 120px;
+  	font-size: 18px;
+  	color: #333333;
+   	text-align: center;
+	font-weight: bold;
+	line-height: 150px;
+	transition: 150ms;
+
+}
+.container:hover {
+    color: #54bcc8;
+}
+
+* {
+    box-sizing: border-box
+}
+
+.slideshow-container {
+    position: relative;
+}
+
+#logo {
+    width: 400px;
+    height: 150px;
+    float: left;
+}
+img {
+    width: 1000px;
+    height: 600px;
+}

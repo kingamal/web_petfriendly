@@ -1,47 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <title>Miejsca Przyjazne Zwierzętom</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="Description" content="Wyszukiwarka hoteli przyjaznych zwierzętom" />
+	<meta name="Keywords" content="hotel, petfriendly, przyjazny zwierzętom" />
+	<title>Petfriendly</title>
+	<link rel="stylesheet" href="./style/swiper.min.css">
+	<link type="text/css" rel="stylesheet" href="./style/style.css" />
+	<script type="text/javascript" src="./style/jquery-3.2.1.min.js"></script> <!-- biblioteka potrzebna do slidera -->
+	<script type="text/javascript" src="./style/swiper.min.js"></script> <!-- slider -->
+	<script type="text/javascript" src="./style/js.js"></script>
 </head>
 <body>
-<!-- NAV SECTION -->
-         <div class="navbar navbar-inverse navbar-fixed-top">
+	<div id="top">
+		<div class="inner">
+			<div id="LOGO">
+				<a href="index.html">
+					<img src=".style/image/logo.jpg" alt="PETFRIENDLY" id="logo"/>
+				</a>
+			</div>
+			<div id="MENU">
+				<a class="container" href="index.html">Home
+				</a>
+				<a class="container" href="top10.html">TOP10
+				</a>
+				<a class="container" href="searching.html">Wyszukiwarka
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="main">
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<img src=".style/image/slideshow/dog.jpg"/>
+				</div>
+				<div class="swiper-slide">
+					<img src=".style/image/slideshow/dog2.jpg"/>
+				</div>
+				<div class="swiper-slide">
+					<img src=".style/image/slideshow/dog3.jpg"/>
+				</div>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+	</div>
+	</br>
+	</div>
+	<div class="footer">
+		<div class="inner">
+			<div class="contact-info">
+				<div class="left-column">
+				</div>
+				<div class="right-column">
+					<h5>Kontakt:</h5>
+					<p>
+						e-mail: petfriendly@sth.com <br/>
+					</p>
+				</div>
+			</div>
+			<p class="copyright">&copy;2021 PETFRIENDLY</p>
+		</div>
+	</div>
 
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">PETFRIENDLY</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="top10.html">TOP10</a></li>
-                     <li><a href="searching.html">SEARCH</a></li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-     <!--END NAV SECTION -->
-
-<div id="home-sec">
-
-
-    <div class="container"  >
-        <div class="row text-center">
-            <div  class="col-md-12" >
-                <span class="head-main" >Travel Template</span>
-                <h3 class="head-last col-md-4 col-md-offset-4  col-sm-6 col-sm-offset-3">Lorem ipsum dolor sit ametLorem</h3>
-
-
-            </div>
-        </div>
-    </div>
-         </div>
+</div>
 </body>
 </html>
