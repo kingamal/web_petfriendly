@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Miejsca Przyjazne Zwierzętom</title>
-</head>
-<body>
-{% for i in hotels %}
-<h1>{{ i }}<br></h1>
-{% endfor %}
-</body>
-</html>
+{% extends 'petfriendly/base.html' %}
+{% load static %}
+
+{% block content %}
+<form method="POST">
+    <div class="form-group">
+        <label class="form-label" for="input-example-1">Miejscowość</label>
+        <input required class="form-input" name="comment" type="text" id="input-example-1" placeholder="Comment">
+    </div>
+    <button class="button1" type="submit">Wyślij</button>
+
+</form>
+{% endblock %}
