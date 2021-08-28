@@ -63,11 +63,20 @@ def home(request):
 
 
 def top10(request):
-    hotel = HotelsLocation.objects.all().order_by('ranking')[:10]  # [:10] order_by()
+    hotel = HotelsLocation.objects.all().order_by('-ranking')[:10]
     hotels = []
     for i in hotel:
-        hotels.append(i.pk)
-        hotels.append(i.hotel_name)
-        hotels.append(i.city)
-        hotels.append(i.url_hotel)
+        hotels.append(i)
     return render(request, 'petfriendly/top10.html', {'hotels': hotels})
+
+
+def searching(request):
+    return render(request, 'petfriendly/searching.html')
+
+
+def datebase(request):
+    hotel = HotelsLocation.objects.all()
+    hotels = []
+    for i in hotel:
+        hotels.append(i)
+    return render(request, 'petfriendly/datebase.html', {'hotels': hotels})

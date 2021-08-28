@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="top10">
+<div class="datebase">
 		<div class="inner">
 <table border="2" cellpadding="10">
 <tr>
@@ -10,7 +10,7 @@
 </tr>
   {% for i in hotels %}
 <tr>
-	<td></td>	<td>{{ i.hotel_name }}</td>   <td>{{ i.city }}</td>  <td><a href="{{ i.url_hotel }}">LINK</a></td>
+	<td>{{ i.pk }}</td>	<td>{{ i.hotel_name }}</td>   <td>{{ i.city }}</td>  <td><a href="{{ i.url_hotel }}">LINK</a></td>
 </tr>
   {% endfor %}
 </table>

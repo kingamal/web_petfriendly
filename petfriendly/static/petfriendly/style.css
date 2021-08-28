@@ -121,3 +121,59 @@ img {
     text-align: left;
     font-size: 8px;
 }
+
+.top10 .inner{
+	width: 1000px;
+	margin: 50px auto;
+}
+
+.top10 table {
+	width: 100%;
+	border: 2px solid white;
+	border-collapse: collapse;
+	background-color: #99CCFF;
+	counter-reset: licznik;
+}
+
+.top10 th {
+	font-size: 20px;
+	background-color: #0066CC;
+	color: white;
+}
+
+.top10 tr, td {
+	border: 2px solid white;
+}
+
+.top10 a {
+	text-decoration: none;
+	color: black;
+}
+
+.datebase .inner{
+	width: 1000px;
+	margin: 50px auto;
+}
+
+.datebase table {
+	width: 100%;
+	border: 2px solid white;
+	border-collapse: collapse;
+	background-color: #99CCFF;
+	counter-reset: licznik;
+}
+
+.datebase th {
+	font-size: 20px;
+	background-color: #0066CC;
+	color: white;
+}
+
+.datebase tr, td {
+	border: 2px solid white;
+}
+
+.datebase a {
+	text-decoration: none;
+	color: black;
+}
