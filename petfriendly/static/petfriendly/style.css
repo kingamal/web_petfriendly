@@ -52,6 +52,7 @@ body {
 	transition: 150ms;
 
 }
+
 .container:hover {
     color: #54bcc8;
 }
@@ -65,11 +66,58 @@ body {
 }
 
 #logo {
-    width: 400px;
+    width: 300px;
     height: 150px;
     float: left;
 }
+
 img {
     width: 1000px;
     height: 600px;
+}
+
+
+.footer {
+    color: #333;
+    background-color: #fff;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: left;
+}
+
+.footer .inner {
+    width: 1000px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.footer h5 {
+    font-family: 'Playfair Display',serif;
+    font-size: 22px;
+}
+
+.footer p {
+    font-family: 'Playfair Display',serif;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+
+.footer .right-column {
+    width: 300px;
+    float: right;
+}
+
+.footer .contact-info:after {
+    clear: both;
+    display: block;
+    content: '';
+}
+
+.footer .copyright {
+    margin-top: 40px;
+    clear: both;
+    text-align: left;
+    font-size: 8px;
 }

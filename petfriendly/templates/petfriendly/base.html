@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="Description" content="Wyszukiwarka hoteli przyjaznych zwierzętom" />
+	<meta name="Keywords" content="hotel, petfriendly, przyjazny zwierzętom" />
+	<title>Petfriendly</title>
+	<link rel="stylesheet" href="{% static 'petfriendly/swiper.min.css'%}">
+	<link type="text/css" rel="stylesheet" href="{% static 'petfriendly/style.css'%}"/>
+	<script type="text/javascript" src="{% static 'petfriendly/jquery-3.2.1.min.js'%}"></script> <!-- biblioteka potrzebna do slidera -->
+	<script type="text/javascript" src="{% static 'petfriendly/swiper.min.js'%}"></script> <!-- slider -->
+	<script type="text/javascript" src="{% static 'petfriendly/js.js'%}"></script>
+</head>
+<body>
+	<div id="top">
+		<div class="inner">
+			<div>
+				<a href="home">
+					<img src="{% static 'petfriendly/image/logo.jpg'%}" alt="PETFRIENDLY" id="logo"/>
+				</a>
+			</div>
+			<div id="MENU">
+				<a class="container" href="home">Home
+				</a>
+				<a class="container" href="top10">TOP10
+				</a>
+				<a class="container" href="searching">Wyszukaj
+				</a>
+				<a class="container" href="database">Baza
+				</a>
+			</div>
+		</div>
+	</div>
+	{% block content %}
+	{% endblock %}
+	<div class="footer">
+		<div class="inner">
+			<div class="contact-info">
+				<div class="left-column">
+				</div>
+				<div class="right-column">
+					<h5>Kontakt:</h5>
+					<p>
+						e-mail: petfriendly@sth.com <br/>
+					</p>
+				</div>
+			</div>
+			<p class="copyright">&copy;2021 PETFRIENDLY</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

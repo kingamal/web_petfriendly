@@ -1,70 +1,23 @@
-<!DOCTYPE html
-	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="Description" content="Wyszukiwarka hoteli przyjaznych zwierzętom" />
-	<meta name="Keywords" content="hotel, petfriendly, przyjazny zwierzętom" />
-	<title>Petfriendly</title>
-	<link rel="stylesheet" href="./style/swiper.min.css">
-	<link type="text/css" rel="stylesheet" href="./style/style.css" />
-	<script type="text/javascript" src="./style/jquery-3.2.1.min.js"></script> <!-- biblioteka potrzebna do slidera -->
-	<script type="text/javascript" src="./style/swiper.min.js"></script> <!-- slider -->
-	<script type="text/javascript" src="./style/js.js"></script>
-</head>
-<body>
-	<div id="top">
-		<div class="inner">
-			<div id="LOGO">
-				<a href="index.html">
-					<img src=".style/image/logo.jpg" alt="PETFRIENDLY" id="logo"/>
-				</a>
-			</div>
-			<div id="MENU">
-				<a class="container" href="index.html">Home
-				</a>
-				<a class="container" href="top10.html">TOP10
-				</a>
-				<a class="container" href="searching.html">Wyszukiwarka
-				</a>
-			</div>
-		</div>
-	</div>
-	<div class="main">
-		<div class="swiper-container">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-					<img src=".style/image/slideshow/dog.jpg"/>
-				</div>
-				<div class="swiper-slide">
-					<img src=".style/image/slideshow/dog2.jpg"/>
-				</div>
-				<div class="swiper-slide">
-					<img src=".style/image/slideshow/dog3.jpg"/>
-				</div>
-			</div>
-			<div class="swiper-pagination"></div>
-		</div>
-	</div>
-	</br>
-	</div>
-	<div class="footer">
-		<div class="inner">
-			<div class="contact-info">
-				<div class="left-column">
-				</div>
-				<div class="right-column">
-					<h5>Kontakt:</h5>
-					<p>
-						e-mail: petfriendly@sth.com <br/>
-					</p>
-				</div>
-			</div>
-			<p class="copyright">&copy;2021 PETFRIENDLY</p>
-		</div>
-	</div>
+{% extends 'petfriendly/base.html' %}
+{% load static %}
 
+{% block content %}
+<div class="main">
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<img src="{% static 'petfriendly/image/slideshow/dog.jpg'%}"/>
+			</div>
+			<div class="swiper-slide">
+				<img src="{% static 'petfriendly/image/slideshow/dog2.jpg'%}"/>
+			</div>
+			<div class="swiper-slide">
+				<img src="{% static 'petfriendly/image/slideshow/dog3.jpg'%}"/>
+			</div>
+		</div>
+		<div class="swiper-pagination"></div>
+	</div>
 </div>
-</body>
-</html>
+</br>
+</div>
+{% endblock %}
