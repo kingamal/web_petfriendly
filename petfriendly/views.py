@@ -62,6 +62,10 @@ def home(request):
     return render(request, 'petfriendly/index.html')
 
 
+def onas(request):
+    return render(request, 'petfriendly/onas.html')
+
+
 def top10(request):
     hotel = HotelsLocation.objects.all().order_by('-ranking')[:10]
     hotels = []

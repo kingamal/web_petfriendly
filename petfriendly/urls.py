@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('home', views.home, name='homeview'),
+    path('onas', views.onas, name='onasview'),
     path('top10', views.top10, name='top10view'),
     path('searching', views.searching, name='searchingview'),
     path('datebase', views.datebase, name='datebaseview'),
