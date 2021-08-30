@@ -1,9 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from .models import HotelsLocation
 from .location import Location
 from os.path import join, dirname
-import json
 from .models import HotelsLocation
 from datetime import datetime
 
@@ -75,12 +73,23 @@ def top10(request):
 
 
 def searching(request):
-    return render(request, 'petfriendly/searching.html')
-
-
-def datebase(request):
-    hotel = HotelsLocation.objects.all()
     hotels = []
-    for i in hotel:
-        hotels.append(i)
-    return render(request, 'petfriendly/datebase.html', {'hotels': hotels})
+    if request.method == "POST":
+        city = request.POST['city']
+        hotel = HotelsLocation.objects.filter(city = city).all()
+        for i in hotel:
+            hotels.append(i)
+        return render(request, 'petfriendly/searching.html', {'hotels': hotels})
+    else:
+        hotel = HotelsLocation.objects.all()[:20]
+        for i in hotel:
+            hotels.append(i)
+    return render(request, 'petfriendly/searching.html', {'hotels': hotels})
+
+
+# def datebase(request):
+#     hotel = HotelsLocation.objects.all()
+#     hotels = []
+#     for i in hotel:
+#         hotels.append(i)
+#     return render(request, 'petfriendly/datebase.html', {'hotels': hotels})

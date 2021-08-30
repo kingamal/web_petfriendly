@@ -2,12 +2,27 @@
 {% load static %}
 
 {% block content %}
-<form method="POST">
+<form method="POST" action="/searching">
+    {% csrf_token %}
     <div class="form-group">
-        <label class="form-label" for="input-example-1">Miejscowość</label>
-        <input required class="form-input" name="comment" type="text" id="input-example-1" placeholder="Comment">
+    <label class="form-label" for="input-example-1">Miejscowość</label>
+    <input required class="form-input" name="city" type="text" id="input-example-1" placeholder="City">
     </div>
+    </br>
     <button class="button1" type="submit">Wyślij</button>
-
-</form>
+    </form>
+<div class="searching">
+		<div class="inner">
+<table border="2" cellpadding="10">
+<tr>
+	<th>Lp.</th>	<th>Nazwa hotelu</th>   <th>Miejscowość</th>   <th>Adres URL</th>
+</tr>
+  {% for i in hotels %}
+<tr>
+	<td></td>	<td>{{ i.hotel_name }}</td>   <td>{{ i.city }}</td>  <td><a href="{{ i.url_hotel }}">LINK</a></td>
+</tr>
+  {% endfor %}
+</table>
+	</div>
+	</div>
 {% endblock %}

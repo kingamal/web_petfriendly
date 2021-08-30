@@ -31,7 +31,7 @@ body {
 	height: 150px;
 	overflow: hidden;
 	background-color: white;
-	margin: 0;
+	margin-left: 100px;
 	padding: 0;
 }
 
@@ -84,18 +84,22 @@ body {
 	font-family: 'Open Sans',sans-serif;
 	padding: 50px 0;
 	height: 700px;
+	position: relative;
 }
 
 .onas p {
 	width: 600px;
 	margin: auto 0;
 	height: auto;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
 }
 
-.onas img {
+#onas {
 	float: right;
-	width: 300px ;
-	height: 500px;
+	width: 300px;
+	height: 400px;
 	margin: 0 50px;
 }
 
@@ -124,7 +128,6 @@ body {
     font-size: 18px;
     line-height: 30px;
 }
-
 
 .footer .right-column {
     width: 300px;
@@ -196,6 +199,44 @@ body {
 }
 
 .datebase a {
+	text-decoration: none;
+	color: black;
+}
+
+button[type='submit'].button1{
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    color: #99CCFF;
+    background-color: #0066CC;
+}
+
+.searching .inner{
+	width: 1000px;
+	margin: 50px auto;
+}
+
+.searching table {
+	width: 100%;
+	border: 2px solid white;
+	border-collapse: collapse;
+	background-color: #99CCFF;
+	counter-reset: licznik;
+}
+
+.searching th {
+	font-size: 20px;
+	background-color: #0066CC;
+	color: white;
+}
+
+.searching tr, td {
+	border: 2px solid white;
+}
+
+.searching a {
 	text-decoration: none;
 	color: black;
 }
