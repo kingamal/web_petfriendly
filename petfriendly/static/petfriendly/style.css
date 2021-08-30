@@ -157,7 +157,11 @@ body {
 	border: 2px solid white;
 	border-collapse: collapse;
 	background-color: #99CCFF;
-	counter-reset: licznik;
+	counter-reset: rowNumber -1;
+}
+
+.top10 table tr {
+    counter-increment: rowNumber;
 }
 
 .top10 th {
@@ -168,6 +172,7 @@ body {
 
 .top10 tr, td {
 	border: 2px solid white;
+	content: counter(rowNumber);
 }
 
 .top10 a {
