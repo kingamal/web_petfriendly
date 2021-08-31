@@ -19,7 +19,7 @@
 </tr>
   {% for i in hotels %}
 <tr>
-	<td></td>	<td>{{ i.hotel_name }}</td>   <td>{{ i.city }}</td>  <td><a href="{{ i.url_hotel }}">LINK</a></td>
+	<td>{{ forloop.counter }}</td>	<td>{{ i.hotel_name }}</td>   <td>{{ i.city }}</td>  <td><a href="{{ i.url_hotel }}">LINK</a></td>
 </tr>
   {% endfor %}
 </table>
