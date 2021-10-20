@@ -4,6 +4,7 @@ from .location import Location
 from os.path import join, dirname
 from .models import HotelsLocation
 from datetime import datetime
+import os
 
 # Create your views here.
 
@@ -15,8 +16,7 @@ def hotellocation(request, hotel_name):
 
 def get_hotel_location(request, page):
     location = Location()
-    with open(join(dirname(dirname(dirname(__file__))), 'key.txt')) as f:
-        key = f.read().strip()
+    key = os.environ['BOOKING_API_KEY']
     location.get_hotels(key, page)
     counter_new, counter_total = location.get_hotel_location()
     return HttpResponse("{}/{}".format(counter_new, counter_total))
@@ -29,8 +29,7 @@ def get_hotel_location(request, page):
 def get_types(request):
     today = datetime.now().strftime('%Y-%m-%d')
     get_types = HotelsLocation.objects.filter(updated_at__lte = today).all() #[:100]
-    with open(join(dirname(dirname(dirname(__file__))), 'key2.txt')) as f:
-        key = f.read().strip()
+    key = os.environ['GOOGLE_API_KEY']
     for types in get_types:
         retval = types.types_searching(key)
     return HttpResponse('ok')
