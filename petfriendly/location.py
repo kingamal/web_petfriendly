@@ -14,8 +14,8 @@ class Location:
 
     def get_hotels(self, key, page):
         url = "https://booking-com.p.rapidapi.com/v1/hotels/search"
-        querystring = {"units": "metric", "order_by": "popularity", "checkin_date": "2021-12-12",
-                       "filter_by_currency": "PLN", "adults_number": "2", "checkout_date": "2021-12-20",
+        querystring = {"units": "metric", "order_by": "popularity", "checkin_date": "2022-02-12",
+                       "filter_by_currency": "PLN", "adults_number": "2", "checkout_date": "2022-02-20",
                        "dest_id": "170", "locale": "pl", "dest_type": "country", "room_number": "1",
                        "children_ages": "5,0", "page_number": page,
                        "categories_filter_ids": "facility::4,free_cancellation::1", "children_number": "2"}
