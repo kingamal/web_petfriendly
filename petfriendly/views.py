@@ -52,7 +52,7 @@ def ranking(request):
             elif value > 10:
                 i.ranking += 5
         i.save()
-    return HttpResponse()
+    return HttpResponse('ok')
 
 
 def home(request):
