@@ -13,6 +13,7 @@ CHOICES = [
     (ACTIVE, 'Active')
 ]
 
+
 class HotelsLocation(models.Model):
     hotel_name = models.CharField(max_length=120)
     city = models.CharField(max_length=64)
