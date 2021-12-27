@@ -8,6 +8,7 @@ import os
 
 # Create your views here.
 
+
 def hotellocation(request, hotel_name):
     hotellocation = get_object_or_404(HotelsLocation, hotel_name=hotel_name) #filter
     return HttpResponse(hotellocation.hotel_name)
